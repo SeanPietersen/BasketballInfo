@@ -1,0 +1,12 @@
+C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.Domain\bin\Debug\net5.0\BasketballInfo.Domain.deps.json
+C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.Domain\bin\Debug\net5.0\BasketballInfo.Domain.dll
+C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.Domain\bin\Debug\net5.0\ref\BasketballInfo.Domain.dll
+C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.Domain\bin\Debug\net5.0\BasketballInfo.Domain.pdb
+C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.Domain\obj\Debug\net5.0\BasketballInfo.Domain.csproj.AssemblyReference.cache
+C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.Domain\obj\Debug\net5.0\BasketballInfo.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.Domain\obj\Debug\net5.0\BasketballInfo.Domain.AssemblyInfoInputs.cache
+C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.Domain\obj\Debug\net5.0\BasketballInfo.Domain.AssemblyInfo.cs
+C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.Domain\obj\Debug\net5.0\BasketballInfo.Domain.csproj.CoreCompileInputs.cache
+C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.Domain\obj\Debug\net5.0\BasketballInfo.Domain.dll
+C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.Domain\obj\Debug\net5.0\ref\BasketballInfo.Domain.dll
+C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.Domain\obj\Debug\net5.0\BasketballInfo.Domain.pdb

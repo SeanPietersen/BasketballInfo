@@ -1,0 +1,17 @@
+C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.Application\bin\Debug\net5.0\BasketballInfo.Application.deps.json
+C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.Application\bin\Debug\net5.0\BasketballInfo.Application.dll
+C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.Application\bin\Debug\net5.0\ref\BasketballInfo.Application.dll
+C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.Application\bin\Debug\net5.0\BasketballInfo.Application.pdb
+C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.Application\bin\Debug\net5.0\BasketballInfo.Domain.dll
+C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.Application\bin\Debug\net5.0\BasketballInfo.Infrastructure.dll
+C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.Application\bin\Debug\net5.0\BasketballInfo.Domain.pdb
+C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.Application\bin\Debug\net5.0\BasketballInfo.Infrastructure.pdb
+C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.Application\obj\Debug\net5.0\BasketballInfo.Application.csproj.AssemblyReference.cache
+C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.Application\obj\Debug\net5.0\BasketballInfo.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.Application\obj\Debug\net5.0\BasketballInfo.Application.AssemblyInfoInputs.cache
+C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.Application\obj\Debug\net5.0\BasketballInfo.Application.AssemblyInfo.cs
+C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.Application\obj\Debug\net5.0\BasketballInfo.Application.csproj.CoreCompileInputs.cache
+C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.Application\obj\Debug\net5.0\BasketballInfo.Application.csproj.CopyComplete
+C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.Application\obj\Debug\net5.0\BasketballInfo.Application.dll
+C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.Application\obj\Debug\net5.0\ref\BasketballInfo.Application.dll
+C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.Application\obj\Debug\net5.0\BasketballInfo.Application.pdb
