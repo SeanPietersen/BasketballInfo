@@ -377,7 +377,7 @@ namespace BasketballInfo.Infrastructure.DbContexts
 * |            |   Zavijava                    | 2022-06-07 - Creating Coach Table and populating
 * |            |   Zaurak                      | 2022-06-07 - Creating User Table and populating
 * |            |   Zaniah                      | 2022-06-07 - Adding data type UserName to User Table and populating
-* |            |   Yildun                      | (remeber to do migration) - Remove userName to user Table
+* |            |   Yildun                      | 2022-06-09 - Remove userName from user Table
 * |            |   Yed_Prior                   | 
 * |            |   Yed_Posterior               | 
 * |            |   Wezen                       | 

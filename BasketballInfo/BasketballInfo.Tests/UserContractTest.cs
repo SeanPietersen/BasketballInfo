@@ -89,7 +89,7 @@ namespace BasketballInfo.Tests
                 Password = "Sean2563"
             };
 
-            var createdUser = new UserDto()
+            var createdUser = new User()
             {
                 FirstName = "Percy",
                 LastName = "Pietersen",
@@ -98,7 +98,7 @@ namespace BasketballInfo.Tests
             };
 
             _userRepository.GetUserByEmailAsync(createdUserDto.Email).ReturnsNull();
-            _userRepository.RegisterUser(createdUser);
+            _userRepository.RegisterUserAsync(createdUser).Returns(createdUser);
 
             //Act
             var actual = userContract.RegisterUser(createdUserDto);

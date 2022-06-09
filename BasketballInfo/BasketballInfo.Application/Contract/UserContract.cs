@@ -1,10 +1,7 @@
 ﻿using AutoMapper;
 using BasketballInfo.Application.Dto;
 using BasketballInfo.Domain;
-using BasketballInfo.Infrastructure.Services;
 using BasketballInfo.Infrastructure.Services.Repositories;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace BasketballInfo.Application.Contract
 {
@@ -39,7 +36,7 @@ namespace BasketballInfo.Application.Contract
                 Password = userDto.Password
             };
 
-            var user = _userRepository.RegisterUser(createdUser);
+            var user = _userRepository.RegisterUserAsync(createdUser);
 
             return _mapper.Map<UserDto>(user);
         }

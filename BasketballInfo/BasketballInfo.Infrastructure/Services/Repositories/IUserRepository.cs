@@ -5,7 +5,7 @@ namespace BasketballInfo.Infrastructure.Services.Repositories
 {
     public interface IUserRepository
     {
-        User RegisterUser(User user);
+        Task<User> RegisterUserAsync(User user);
         Task<User> GetUserByEmailAsync(string email);
         //Task<IEnumerable<User>> GetAllUsersAsync();
         //Task<User> GetUserByIdAsync(int userId);

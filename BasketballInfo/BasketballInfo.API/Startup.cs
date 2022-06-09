@@ -33,9 +33,9 @@ namespace BasketballInfo.API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BasketballInfo.API", Version = "v1" });
             });
 
-            services.AddTransient<ITeamContract, TeamContract>();
-            services.AddTransient<IPlayerContract, PlayerContract>();
-            services.AddTransient<ICoachContract, CoachContract>();
+            //services.AddTransient<ITeamContract, TeamContract>();
+            //services.AddTransient<IPlayerContract, PlayerContract>();
+            //services.AddTransient<ICoachContract, CoachContract>();
             services.AddTransient<IUserContract, UserContract>();
 
             services.AddDbContext<BasketballInfoContext>(opt => opt.UseSqlServer(Configuration["ConnectionStrings:BasketballInfoDBConnectionStringSqlServer"]));

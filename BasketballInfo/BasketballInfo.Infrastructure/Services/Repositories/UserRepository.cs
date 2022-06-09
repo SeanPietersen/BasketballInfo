@@ -21,9 +21,9 @@ namespace BasketballInfo.Infrastructure.Services.Repositories
             return await _context.Users.Where(c => c.Email == email).FirstOrDefaultAsync();
         }
 
-        public User RegisterUser(User user)
+        public async Task<User> RegisterUserAsync(User user)
         {
-            var entity = _context.Users.Add(user);
+            var entity = await _context.Users.AddAsync(user);
 
             if (entity.State == EntityState.Added)
             {
