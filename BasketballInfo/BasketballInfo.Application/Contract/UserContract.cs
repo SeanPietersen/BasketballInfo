@@ -75,24 +75,16 @@ namespace BasketballInfo.Application.Contract
             return _mapper.Map<IEnumerable<UserDto>>(userEntities);
         }
 
+        public async Task<UserDto> GetUserById(int userId)
+        {
+            var user = await _userRepository.GetUserByIdAsync(userId);
 
-        //public async Task<IEnumerable<UserDto>> GetAllUsers()
-        //{
-        //    
+            if (user == null)
+            {
+                return null;
+            }
 
-        //    
-        //}
-
-        //public async Task<UserDto> GetUserByUserId(int userId)
-        //{
-        //    var user = await _basketballInfoRepository.GetUserByUserIdAsync(userId);
-
-        //    if (user == null)
-        //    {
-        //        return null;
-        //    }
-
-        //    return (_mapper.Map<UserDto>(user));
-        //}
+            return (_mapper.Map<UserDto>(user));
+        }
     }
 }

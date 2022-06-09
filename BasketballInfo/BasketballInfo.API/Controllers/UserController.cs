@@ -52,18 +52,17 @@ namespace BasketballInfo.API.Controllers
             return Ok(user);
         }
 
-        //[HttpGet("{id}")]
+        [HttpGet("{id}")]
+        public ActionResult<UserDto> GetUserByUserId(int userId)
+        {
+            var user = _userContract.GetUserById(userId).Result;
 
-        //public ActionResult<UserDto> GetUserByUserId(int userId)
-        //{
-        //    var user = _userContract.GetUserByUserId(userId).Result;
+            if (user == null)
+            {
+                return NotFound();
+            }
 
-        //    if (user == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return Ok(user);
-        //}
+            return Ok(user);
+        }
     }
 }

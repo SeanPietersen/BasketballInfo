@@ -9,9 +9,6 @@ namespace BasketballInfo.Infrastructure.Services.Repositories
         Task<User> RegisterUserAsync(User user);
         Task<User> GetUserByEmailAsync(string email);
         Task<IEnumerable<User>> GetAllUsersAsync();
-        //Task<User> GetUserByIdAsync(int userId);
-        //Task<User> CreateUserAsync(string userName, string email, User user);
-        //Task<bool> UserNameAlreadyExists(string username);
-        //Task<bool> UserNameforEmailAlreadyExists(string email);
+        Task<User> GetUserByIdAsync(int userId);
     }
 }

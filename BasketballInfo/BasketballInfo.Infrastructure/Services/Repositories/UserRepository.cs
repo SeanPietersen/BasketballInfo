@@ -48,39 +48,9 @@ namespace BasketballInfo.Infrastructure.Services.Repositories
             return await _context.Users.OrderBy(c => c.FirstName).ToListAsync();
         }
 
-        //public async Task<bool> UserForUserIdExists(int userId)
-        //{
-        //    return await _context.Users.AnyAsync(c => c.UserId == userId);
-        //}
-
-        //public async Task<User> GetUserByIdAsync(int userId)
-        //{
-        //    return await _context.Users.Where(c => c.UserId == userId).FirstOrDefaultAsync();
-        //}
-
-        //public async Task CreateUserByUserNameAsync(string userName, string email, User user)
-        //{
-        //    var userToCreateUserName = await UserNameAlreadyExists(userName);
-        //    var userToCreateEmail = await UserNameforEmailAlreadyExists(email);
-
-        //    if (!userToCreateUserName)
-        //    {
-        //        if (!userToCreateEmail)
-        //        {
-        //            User.Add(user);
-        //        }
-
-        //    }
-        //}
-
-        //public async Task<bool> UserNameAlreadyExists(string userName)
-        //{
-        //    return await _context.Users.AnyAsync(c => c.UserName == userName);
-        //}
-
-        //public async Task<bool> UserNameforEmailAlreadyExists(string email)
-        //{
-        //    return await _context.Users.AnyAsync(c => c.Email == email);
-        //}
+        public async Task<User> GetUserByIdAsync(int userId)
+        {
+            return await _context.Users.Where(c => c.UserId == userId).FirstOrDefaultAsync();
+        }
     }
 }

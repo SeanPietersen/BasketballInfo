@@ -254,46 +254,46 @@ namespace BasketballInfo.Tests
             Assert.Equal(userInDb.Count, actual.ToList().Count);
         }
 
-        //[Fact]
-        //public async Task GetUserByUserById_ShouldReturnNull_InvalidUserId()
-        //{
-        //    //Arrange
-        //    var userId = 0;
+        [Fact]
+        public async Task GetUserById_ShouldReturnNull_InvalidUserId()
+        {
+            //Arrange
+            var userId = 0;
 
-        //    _basketballInfoRepository.GetUserByUserIdAsync(userId).ReturnsNull();
+            _userRepository.GetUserByIdAsync(userId).ReturnsNull();
 
-        //    //Act
-        //    var actual = await _sut.GetUserByUserId(userId);
+            //Act
+            var actual = await userContract.GetUserById(userId);
 
-        //    //Assert
-        //    Assert.Null(actual);
+            //Assert
+            Assert.Null(actual);
 
-        //}
+        }
 
-        //[Fact]
-        //public async Task GetUserByUserId_IsSuccessful()
-        //{
-        //    //Arrange
-        //    var userId = 1;
+        [Fact]
+        public async Task GetUserByUserId_IsSuccessful()
+        {
+            //Arrange
+            var userId = 1;
 
-        //    var userInDb = new User()
-        //    {
-        //        UserId = 1,
-        //        FirstName = "Sean",
-        //        LastName = "Pietersen",
-        //        Email = "seanpietersen7@gmail.com",
-        //        Password = "Sean2563"
-        //    };
+            var userInDb = new User()
+            {
+                UserId = 1,
+                FirstName = "Sean",
+                LastName = "Pietersen",
+                Email = "seanpietersen7@gmail.com",
+                Password = "Sean2563"
+            };
 
-        //    _basketballInfoRepository.GetUserByUserIdAsync(userId).Returns(userInDb);
+            _userRepository.GetUserByIdAsync(userId).Returns(userInDb);
 
-        //    //Act
-        //    var actual = await _sut.GetUserByUserId(userId);
+            //Act
+            var actual = await userContract.GetUserById(userId);
 
-        //    //Assert
-        //    Assert.Equal(userInDb.FirstName, actual.FirstName);
-        //    Assert.Equal(userInDb.Email, actual.Email);
-        //    Assert.Equal(userInDb.Password, actual.Password);
-        //}
+            //Assert
+            Assert.Equal(userInDb.FirstName, actual.FirstName);
+            Assert.Equal(userInDb.Email, actual.Email);
+            Assert.Equal(userInDb.Password, actual.Password);
+        }
     }
 }
