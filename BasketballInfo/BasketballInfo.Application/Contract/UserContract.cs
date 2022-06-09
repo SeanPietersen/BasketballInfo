@@ -2,6 +2,7 @@
 using BasketballInfo.Application.Dto;
 using BasketballInfo.Domain;
 using BasketballInfo.Infrastructure.Services.Repositories;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BasketballInfo.Application.Contract
@@ -42,16 +43,44 @@ namespace BasketballInfo.Application.Contract
             return _mapper.Map<UserDto>(createdUser);
         }
 
-        //public Task<UserDto> RegisterUser(string userName, string email, RegisterUserDto userDto)
-        //{
-        //    throw new System.NotImplementedException();
-        //}
+        public async Task<UserDto> UserSignUp(UserSignUpDto userDto)
+        {
+            //check if email exists
+            var userEmailCheck = await _userRepository.GetUserByEmailAsync(userDto.Email);
+
+            if (userEmailCheck == null)
+            {
+                // email/username doesnt exists
+                return null;
+            }
+
+            //check if password matches email
+            if(userEmailCheck.Password != userDto.Password)
+            {
+                return null;
+            }
+
+            var user = new User()
+            {
+                FirstName = userEmailCheck.FirstName,
+                LastName = userEmailCheck.LastName,
+            };
+            //successful signup returns user
+            return _mapper.Map<UserDto>(user);
+        }
+
+        public async Task<IEnumerable<UserDto>> GetAllUsers()
+        {
+            var userEntities = await _userRepository.GetAllUsersAsync();
+            return _mapper.Map<IEnumerable<UserDto>>(userEntities);
+        }
+
 
         //public async Task<IEnumerable<UserDto>> GetAllUsers()
         //{
-        //    var userEntities = await _basketballInfoRepository.GetAllUsersAsync();
+        //    
 
-        //    return _mapper.Map<IEnumerable<UserDto>>(userEntities);
+        //    
         //}
 
         //public async Task<UserDto> GetUserByUserId(int userId)

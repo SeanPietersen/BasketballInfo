@@ -31,9 +31,9 @@ namespace BasketballInfo.API.Controllers
         }
 
         [HttpPost("signin")]
-        public ActionResult<UserDto> UserSignIn([FromBody] RegisterUserDto userDto)
+        public ActionResult<UserDto> UserSignIn([FromBody] UserSignUpDto userDto)
         {
-            var user = _userContract.RegisterUser(userDto).Result;
+            var user = _userContract.UserSignUp(userDto).Result;
 
             if (user == null)
             {
@@ -43,14 +43,14 @@ namespace BasketballInfo.API.Controllers
             return Ok(user);
         }
 
-        //[HttpGet]
-        //public ActionResult<IEnumerable<UserDto>> GetAllUsers()
-        //{
+        [HttpGet]
+        public ActionResult<IEnumerable<UserDto>> GetAllUsers()
+        {
 
-        //    var user = _userContract.GetAllUsers().Result;
+            var user = _userContract.GetAllUsers().Result;
 
-        //    return Ok(user);
-        //}
+            return Ok(user);
+        }
 
         //[HttpGet("{id}")]
 

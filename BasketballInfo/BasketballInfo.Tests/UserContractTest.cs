@@ -116,48 +116,143 @@ namespace BasketballInfo.Tests
             Assert.Equal(expected.LastName, actual.LastName);
             Assert.Equal(expected.Email, actual.Email);
         }
+        [Fact]
+        public async Task UserSignUp_ShouldReturnNull_EmailDoesntExist()
+        {
+            //Arrange
+            var userInDb = new List<User>()
+            {
+                new User()
+                {
+                    UserId = 1,
+                    FirstName = "Sean",
+                    LastName = "Pietersen",
+                    Email = "seanpietersen7@gmail.com",
+                    Password = "Sean2563"
+                },
+                 new User()
+                {
+                    UserId = 2,
+                    FirstName = "Jason",
+                    LastName = "Pietersen",
+                    Email = "jase.pietersen7@gmail.com",
+                    Password = "Jason2563"
+                }
+             };
 
-        //[Fact]
-        //public async Task GetAllUsers_IsSuccessful()
-        //{
-        //    //Arrange
-        //    var userInDb = new List<User>()
-        //    {
-        //        new User()
-        //        {
-        //            UserId = 1,
-        //            FirstName = "Sean",
-        //            LastName = "Pietersen",
-        //            Email = "seanpietersen7@gmail.com",
-        //            Password = "Sean2563"
-        //        },
-        //         new User()
-        //        {
-        //            UserId = 2,
-        //            FirstName = "Jason",
-        //            LastName = "Pietersen",
-        //            Email = "jase.pietersen7@gmail.com",
-        //            Password = "Jason2563"
-        //        },
-        //          new User()
-        //        {
-        //            UserId =31,
-        //            FirstName = "Rumer",
-        //            LastName = "Manis",
-        //            Email = "rumerkerm@gmail.com",
-        //            Password = "Rumer1234"
-        //        },
 
-        //    };
+            var signUpUserDto = new UserSignUpDto()
+            {
+                Email = "pfpietersen@gmail.com",
+                Password = "Sean2563"
+            };
 
-        //    _basketballInfoRepository.GetAllUsersAsync().Returns(userInDb);
+            _userRepository.GetUserByEmailAsync(signUpUserDto.Email).ReturnsNull();
 
-        //    //Act
-        //    var actual = await _sut.GetAllUsers();
+            //Act
+            var actual = await userContract.UserSignUp(signUpUserDto);
 
-        //    //Assert
-        //    Assert.Equal(userInDb.Count, actual.ToList().Count);
-        //}
+            //Assert
+            Assert.Null(actual);
+        }
+
+        [Fact]
+        public async Task UserSignUp_ShouldReturnNull_PasswordDoesNotMatchEmail()
+        {
+            //Arrange
+            var userInDb =  new User()
+            {
+                UserId = 1,
+                FirstName = "Jason",
+                LastName = "Pietersen",
+                Email = "jase.pietersen@gmail.com",
+                Password = "Jason2563"
+            };
+
+            var signUpUserDto = new UserSignUpDto()
+            {
+                Email = "jase.pietersen@gmail.com",
+                Password = "Sean2563"
+            };
+
+            _userRepository.GetUserByEmailAsync(signUpUserDto.Email).Returns(userInDb);
+
+            //Act
+            var actual = await userContract.UserSignUp(signUpUserDto);
+
+            //Assert
+            Assert.Null(actual);
+        }
+
+        [Fact]
+        public async Task UserSignUp_Successful()
+        {
+            //Arrange
+            var userInDb = new User()
+            {
+                UserId = 1,
+                FirstName = "Jason",
+                LastName = "Pietersen",
+                Email = "jase.pietersen@gmail.com",
+                Password = "Jason2563"
+            };
+
+            var signUpUserDto = new UserSignUpDto()
+            {
+                Email = "jase.pietersen@gmail.com",
+                Password = "Jason2563"
+            };
+
+            _userRepository.GetUserByEmailAsync(signUpUserDto.Email).Returns(userInDb);
+
+            //Act
+            var actual = await userContract.UserSignUp(signUpUserDto);
+
+            //Assert
+            Assert.Equal(userInDb.FirstName, actual.FirstName);
+        }
+
+        [Fact]
+        public async Task GetAllUsers_IsSuccessful()
+        {
+            //Arrange
+            var userInDb = new List<User>()
+            {
+                new User()
+                {
+                    UserId = 1,
+                    FirstName = "Sean",
+                    LastName = "Pietersen",
+                    Email = "seanpietersen7@gmail.com",
+                    Password = "Sean2563"
+                },
+                 new User()
+                {
+                    UserId = 2,
+                    FirstName = "Jason",
+                    LastName = "Pietersen",
+                    Email = "jase.pietersen7@gmail.com",
+                    Password = "Jason2563"
+                },
+                  new User()
+                {
+                    UserId =31,
+                    FirstName = "Rumer",
+                    LastName = "Manis",
+                    Email = "rumerkerm@gmail.com",
+                    Password = "Rumer1234"
+                },
+
+            };
+
+            _userRepository.GetAllUsersAsync().Returns(userInDb);
+
+            //Act
+            var actual = await userContract.GetAllUsers();
+
+            //Assert
+            Assert.Equal(userInDb.Count, actual.ToList().Count);
+        }
 
         //[Fact]
         //public async Task GetUserByUserById_ShouldReturnNull_InvalidUserId()

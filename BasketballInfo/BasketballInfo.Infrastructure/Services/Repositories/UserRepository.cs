@@ -2,6 +2,7 @@
 using BasketballInfo.Infrastructure.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -42,15 +43,10 @@ namespace BasketballInfo.Infrastructure.Services.Repositories
             return entity.Entity;
         }
 
-        //public async Task RegisterUserAsync(User user)
-        //{
-        //    var entity = _context.Users.Add(user).;
-        //    return _context.Users.Add(user);
-        //}
-        //public async Task<IEnumerable<User>> GetAllUsersAsync()
-        //{
-        //    return await _context.Users.OrderBy(c => c.FirstName).ToListAsync();
-        //}
+        public async Task<IEnumerable<User>> GetAllUsersAsync()
+        {
+            return await _context.Users.OrderBy(c => c.FirstName).ToListAsync();
+        }
 
         //public async Task<bool> UserForUserIdExists(int userId)
         //{
