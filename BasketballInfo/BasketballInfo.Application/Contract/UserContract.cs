@@ -37,9 +37,9 @@ namespace BasketballInfo.Application.Contract
                 Password = userDto.Password
             };
 
-            var user = _userRepository.RegisterUserAsync(createdUser);
+            await _userRepository.RegisterUserAsync(createdUser);
 
-            return _mapper.Map<UserDto>(user);
+            return _mapper.Map<UserDto>(createdUser);
         }
 
         //public Task<UserDto> RegisterUser(string userName, string email, RegisterUserDto userDto)

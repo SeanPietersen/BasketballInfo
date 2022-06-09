@@ -30,6 +30,19 @@ namespace BasketballInfo.API.Controllers
             return Ok(user);
         }
 
+        [HttpPost("signin")]
+        public ActionResult<UserDto> UserSignIn([FromBody] RegisterUserDto userDto)
+        {
+            var user = _userContract.RegisterUser(userDto).Result;
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(user);
+        }
+
         //[HttpGet]
         //public ActionResult<IEnumerable<UserDto>> GetAllUsers()
         //{

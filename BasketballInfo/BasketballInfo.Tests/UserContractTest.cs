@@ -25,7 +25,7 @@ namespace BasketballInfo.Tests
         }
 
         [Fact]
-        public void RegisterUser_ShouldReturnNull_UserAlreadyExists()
+        public async Task RegisterUser_ShouldReturnNull_UserAlreadyExists()
         {
             //Arrange
 
@@ -50,14 +50,14 @@ namespace BasketballInfo.Tests
             _userRepository.GetUserByEmailAsync(createdUser.Email).Returns(userInDb);
 
             //Act
-            var actual = userContract.RegisterUser(createdUser);
+            var actual = await userContract.RegisterUser(createdUser);
 
             //Assert
             Assert.Null(actual);
         }
 
         [Fact]
-        public void RegisterUser_Successful()
+        public async Task RegisterUser_Successful()
         {
             //Arrange
             var userInDb = new List<User>()
@@ -97,14 +97,24 @@ namespace BasketballInfo.Tests
                 Password = "Sean2563"
             };
 
+            var expected = new UserDto()
+            {
+                FirstName = "Percy",
+                LastName = "Pietersen",
+                Email = "pfpietersen@gmail.com",
+                Password = "Sean2563"
+            };
+
             _userRepository.GetUserByEmailAsync(createdUserDto.Email).ReturnsNull();
             _userRepository.RegisterUserAsync(createdUser).Returns(createdUser);
 
             //Act
-            var actual = userContract.RegisterUser(createdUserDto);
+            var actual = await userContract.RegisterUser(createdUserDto);
 
             //Assert
-            Assert.Equal(createdUser.FirstName, actual.FirstName);
+            Assert.Equal(expected.FirstName, actual.FirstName);
+            Assert.Equal(expected.LastName, actual.LastName);
+            Assert.Equal(expected.Email, actual.Email);
         }
 
         //[Fact]
