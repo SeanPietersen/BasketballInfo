@@ -9,114 +9,116 @@ namespace BasketballInfo.Application.Contract
 {
     public class CoachContract : ICoachContract
     {
-        private readonly IBasketballInfoRepository _basketballInfoRepository;
+        private readonly ICoachRepository _coachRepository;
         private readonly IMapper _mapper;
 
-        public CoachContract(IBasketballInfoRepository basketballInfoRepository, IMapper mapper)
+        public CoachContract(ICoachRepository coachRepository, IMapper mapper)
         {
-            _basketballInfoRepository = basketballInfoRepository;
+            _coachRepository = coachRepository;
             _mapper = mapper;
         }
-        public IEnumerable<CoachDto> GetAllCoachesForTeamId(int teamId)
-        {
-            if (!(_basketballInfoRepository.TeamForTeamIdExists(teamId).Result))
-            {
-                return null;
-            }
+        //public IEnumerable<CoachDto> GetAllCoachesForTeamId(int teamId)
+        //{
+        //    //var team = _basketballInfoRepository.GetTeamByTeamIdAsync(teamId);
 
-            var coaches = _basketballInfoRepository.GetAllCoachesForTeamIdAsync(teamId).Result;
+        //    if (!(_basketballInfoRepository.TeamForTeamIdExists(teamId).Result))
+        //    {
+        //        return null;
+        //    }
 
-            if (coaches == null)
-            {
-                return null;
-            }
+        //    var coaches = _coachRepository.GetAllCoachesForTeamIdAsync(teamId).Result;
 
-            return _mapper.Map<IEnumerable<CoachDto>>(coaches);
-        }
+        //    if (coaches == null)
+        //    {
+        //        return null;
+        //    }
 
-        public CoachDto GetCoachByTeamIdAndCoachId(int teamId, int coachId)
-        {
-            if (!(_basketballInfoRepository.TeamForTeamIdExists(teamId).Result))
-            {
-                return null;
-            }
+        //    return _mapper.Map<IEnumerable<CoachDto>>(coaches);
+        //}
 
-            var coach = _basketballInfoRepository.GetCoachByTeamIdAndCoachIdAsyn(teamId, coachId).Result;
+        //public CoachDto GetCoachByTeamIdAndCoachId(int teamId, int coachId)
+        //{
+        //    if (!(_basketballInfoRepository.TeamForTeamIdExists(teamId).Result))
+        //    {
+        //        return null;
+        //    }
 
-            if (coach == null)
-            {
-                return null;
-            }
+        //    var coach = _coachRepository.GetCoachByTeamIdAndCoachIdAsyn(teamId, coachId).Result;
 
-            return _mapper.Map<CoachDto>(coach);
-        }
+        //    if (coach == null)
+        //    {
+        //        return null;
+        //    }
 
-        public async Task<CoachDto> CreateCoachByCoachId(int teamId, CoachForCreationDto coachDto)
-        {
-            if (!(_basketballInfoRepository.TeamForTeamIdExists(teamId).Result))
-            {
-                return null;
-            }
+        //    return _mapper.Map<CoachDto>(coach);
+        //}
 
-            var finalCoach = _mapper.Map<Coach>(coachDto);
+        //public async Task<CoachDto> CreateCoachByCoachId(int teamId, CoachForCreationDto coachDto)
+        //{
+        //    if (!(_basketballInfoRepository.TeamForTeamIdExists(teamId).Result))
+        //    {
+        //        return null;
+        //    }
 
-            await _basketballInfoRepository.CreateCoachByCoachIdAsync(teamId, finalCoach);
+        //    var finalCoach = _mapper.Map<Coach>(coachDto);
 
-            await _basketballInfoRepository.SaveChangesAsync();
+        //    await _coachRepository.CreateCoachByCoachIdAsync(teamId, finalCoach);
 
-            return _mapper.Map<CoachDto>(finalCoach);
-        }
+        //    await _basketballInfoRepository.SaveChangesAsync();
 
-        public async Task<CoachDto> UpdateCoachByCoachId(int teamId, int coachId, CoachForUpdateDto coachDto)
-        {
-            if (!(_basketballInfoRepository.TeamForTeamIdExists(teamId)).Result)
-            {
-                return null;
-            }
+        //    return _mapper.Map<CoachDto>(finalCoach);
+        //}
 
-            var coachEntity = _basketballInfoRepository.GetCoachByTeamIdAndCoachIdAsyn(teamId, coachId).Result;
+        //public async Task<CoachDto> UpdateCoachByCoachId(int teamId, int coachId, CoachForUpdateDto coachDto)
+        //{
+        //    if (!(_basketballInfoRepository.TeamForTeamIdExists(teamId)).Result)
+        //    {
+        //        return null;
+        //    }
 
-            if (coachEntity == null)
-            {
-                return null;
-            }
+        //    var coachEntity = _coachRepository.GetCoachByTeamIdAndCoachIdAsyn(teamId, coachId).Result;
+
+        //    if (coachEntity == null)
+        //    {
+        //        return null;
+        //    }
 
 
-            var coachToReturn = _mapper.Map(coachDto, coachEntity);
+        //    var coachToReturn = _mapper.Map(coachDto, coachEntity);
 
-            var updateCoachStatus = _basketballInfoRepository.UpdateCoachByCoachIdAsync(coachToReturn);
+        //    var updateCoachStatus = _basketballInfoRepository.UpdateCoachByCoachIdAsync(coachToReturn);
 
-            if (updateCoachStatus)
-            {
-                await _basketballInfoRepository.SaveChangesAsync();
-            }
+        //    if (updateCoachStatus)
+        //    {
+        //        await _basketballInfoRepository.SaveChangesAsync();
+        //    }
 
-            var result = new CoachDto();
+        //    var result = new CoachDto();
 
-            return _mapper.Map(coachToReturn, result);
-        }
+        //    return _mapper.Map(coachToReturn, result);
+        //}
 
-        public async Task<CoachDto> DeleteCoachByCoachId(int teamId, int coachId)
-        {
-            if (!_basketballInfoRepository.TeamForTeamIdExists(teamId).Result)
-            {
-                return null;
-            }
+        //public async Task<CoachDto> DeleteCoachByCoachId(int teamId, int coachId)
+        //{
+        //    if (!_basketballInfoRepository.TeamForTeamIdExists(teamId).Result)
+        //    {
+        //        return null;
+        //    }
 
-            var coachEntity = _basketballInfoRepository.GetCoachByTeamIdAndCoachIdAsyn(teamId, coachId).Result;
+        //    var coachEntity = _basketballInfoRepository.GetCoachByTeamIdAndCoachIdAsyn(teamId, coachId).Result;
 
-            if (coachEntity == null)
-            {
-                return null;
-            }
+        //    if (coachEntity == null)
+        //    {
+        //        return null;
+        //    }
 
-            _basketballInfoRepository.DeleteCoachByCoachIdAsync(coachEntity);
+        //    _basketballInfoRepository.DeleteCoachByCoachIdAsync(coachEntity);
 
-            await _basketballInfoRepository.SaveChangesAsync();
+        //    await _basketballInfoRepository.SaveChangesAsync();
 
-            var result = new CoachDto();
+        //    var result = new CoachDto();
 
-            return _mapper.Map(coachEntity, result);
-        }
+        //    return _mapper.Map(coachEntity, result);
+        //}
     }
 }

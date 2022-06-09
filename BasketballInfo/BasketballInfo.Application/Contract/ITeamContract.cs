@@ -6,7 +6,7 @@ namespace BasketballInfo.Application.Contract
 {
     public interface ITeamContract
     {
-        Task<IEnumerable<TeamDto>> GetAllTeams();
-        Task<TeamDto> GetTeamByTeamId(int teamId, bool includePlayers = false, bool includeCoaches = false);
+        //Task<IEnumerable<TeamDto>> GetAllTeams();
+        //Task<TeamDto> GetTeamByTeamId(int teamId, bool includePlayers = false, bool includeCoaches = false);
     }
 }

@@ -17,27 +17,40 @@ namespace BasketballInfo.API.Controllers
             _userContract = userContract;
         }
 
-        [HttpGet]
-        public ActionResult<IEnumerable<UserDto>> GetAllUsers()
+        [HttpPost("register")]
+        public ActionResult<UserDto> RegisterUser([FromBody] RegisterUserDto userDto)
         {
+            var user = _userContract.RegisterUser(userDto);
 
-            var user = _userContract.GetAllUsers().Result;
-
-            return Ok(user);
-        }
-
-        [HttpGet("{id}")]
-
-        public ActionResult<UserDto> GetUserByUserId(int userId)
-        {
-            var user = _userContract.GetUserByUserId(userId).Result;
-
-            if (user == null)
+            if(user == null)
             {
                 return NotFound();
             }
 
             return Ok(user);
         }
+
+        //[HttpGet]
+        //public ActionResult<IEnumerable<UserDto>> GetAllUsers()
+        //{
+
+        //    var user = _userContract.GetAllUsers().Result;
+
+        //    return Ok(user);
+        //}
+
+        //[HttpGet("{id}")]
+
+        //public ActionResult<UserDto> GetUserByUserId(int userId)
+        //{
+        //    var user = _userContract.GetUserByUserId(userId).Result;
+
+        //    if (user == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return Ok(user);
+        //}
     }
 }

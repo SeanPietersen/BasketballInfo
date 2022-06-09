@@ -3,6 +3,7 @@ using BasketballInfo.Application.Contract;
 using BasketballInfo.Application.Profiles;
 using BasketballInfo.Infrastructure.DbContexts;
 using BasketballInfo.Infrastructure.Services;
+using BasketballInfo.Infrastructure.Services.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -39,7 +40,8 @@ namespace BasketballInfo.API
 
             services.AddDbContext<BasketballInfoContext>(opt => opt.UseSqlServer(Configuration["ConnectionStrings:BasketballInfoDBConnectionStringSqlServer"]));
 
-            services.AddScoped<IBasketballInfoRepository, BasketballInfoRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            //services.AddScoped<ITeamRepository, TeamRepository>();
 
             var mapperConfig = new MapperConfiguration(mc =>
             {

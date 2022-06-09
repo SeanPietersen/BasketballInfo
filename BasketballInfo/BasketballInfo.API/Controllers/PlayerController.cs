@@ -8,79 +8,79 @@ using System.Threading.Tasks;
 
 namespace BasketballInfo.API.Controllers
 {
-    [Route("api/team/{teamId}/player")]
-    [ApiController]
-    public class PlayerController : Controller
-    {
-        private readonly IPlayerContract _player;
+    //[Route("api/team/{teamId}/player")]
+    //[ApiController]
+    //public class PlayerController : Controller
+    //{
+    //    private readonly IPlayerContract _player;
 
-        public PlayerController(IPlayerContract player)
-        {
-            _player = player;
-        }
+    //    public PlayerController(IPlayerContract player)
+    //    {
+    //        _player = player;
+    //    }
 
-        [HttpGet]
-        public ActionResult <IEnumerable<PlayerDto>> GetAllPlayersByTeamId(int teamId)
-        {
-            var players = _player.GetAllPlayersByTeamId(teamId);
+    //    [HttpGet]
+    //    public ActionResult <IEnumerable<PlayerDto>> GetAllPlayersByTeamId(int teamId)
+    //    {
+    //        var players = _player.GetAllPlayersByTeamIdAsync(teamId);
 
-            if(players == null)
-            {
-                return NotFound();
-            }
-            return Ok(players);
-        }
+    //        if(players == null)
+    //        {
+    //            return NotFound();
+    //        }
+    //        return Ok(players);
+    //    }
 
-        [HttpGet("{playerId}")]
-        public ActionResult <PlayerDto> GetPlayerByPlayerIdForATeamId(int teamId, int playerId )
-        {
-            var player = _player.GetPlayerByPlayerId(teamId, playerId);
+    //    [HttpGet("{playerId}")]
+    //    public ActionResult <PlayerDto> GetPlayerByPlayerIdForATeamId(int teamId, int playerId )
+    //    {
+    //        var player = _player.GetPlayerByPlayerId(teamId, playerId);
 
-            if (player == null)
-            {
-                return NotFound();
-            }
-            return Ok(player);
-        }
+    //        if (player == null)
+    //        {
+    //            return NotFound();
+    //        }
+    //        return Ok(player);
+    //    }
 
-        [HttpPost]
-        public ActionResult <PlayerDto> CreatePlayerByPlayerIdForTeamId(int teamId, PlayerForCreationDto playerDto)
-        {
-            var playerToCreate = _player.CreatePlayerByPlayerId(teamId, playerDto).Result;
+    //    [HttpPost]
+    //    public ActionResult <PlayerDto> CreatePlayerByPlayerIdForTeamId(int teamId, PlayerForCreationDto playerDto)
+    //    {
+    //        var playerToCreate = _player.CreatePlayerByPlayerId(teamId, playerDto).Result;
 
-            if(playerToCreate == null)
-            {
-                return NotFound();
-            }
+    //        if(playerToCreate == null)
+    //        {
+    //            return NotFound();
+    //        }
 
-            return Ok(playerToCreate);
-        }
+    //        return Ok(playerToCreate);
+    //    }
 
-        [HttpPut("{playerId}")]
-        public ActionResult <PlayerDto> UpdatePlayerByPlayerId(int teamId, int playerId, PlayerForUpdateDto playerDto)
-        {
-            var playerToUpdate = _player.UpdatePlayerByPlayerId(teamId, playerId, playerDto);
+    //    [HttpPut("{playerId}")]
+    //    public ActionResult <PlayerDto> UpdatePlayerByPlayerId(int teamId, int playerId, PlayerForUpdateDto playerDto)
+    //    {
+    //        var playerToUpdate = _player.UpdatePlayerByPlayerId(teamId, playerId, playerDto);
 
-            if(playerToUpdate == null)
-            {
-                return NotFound();
-            }
+    //        if(playerToUpdate == null)
+    //        {
+    //            return NotFound();
+    //        }
 
-            return Ok(playerToUpdate);
-        }
+    //        return Ok(playerToUpdate);
+    //    }
 
-        [HttpDelete("{playerId}")]
-        public ActionResult <PlayerDto> DeletePlayerByPlayerIdForTeamId(int teamId, int playerId)
-        {
-            var playerToDetele = _player.DeletePlayerByPlayerId(teamId, playerId);
+    //    [HttpDelete("{playerId}")]
+    //    public ActionResult <PlayerDto> DeletePlayerByPlayerIdForTeamId(int teamId, int playerId)
+    //    {
+    //        var playerToDetele = _player.DeletePlayerByPlayerId(teamId, playerId);
 
-            if(playerToDetele == null)
-            {
-                return NotFound();
-            }
+    //        if(playerToDetele == null)
+    //        {
+    //            return NotFound();
+    //        }
 
-            return Ok(playerToDetele);
-        }
+    //        return Ok(playerToDetele);
+    //    }
 
-    }
+    //}
 }

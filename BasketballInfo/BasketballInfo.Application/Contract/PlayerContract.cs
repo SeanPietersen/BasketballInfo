@@ -2,6 +2,7 @@
 using BasketballInfo.Application.Dto;
 using BasketballInfo.Domain;
 using BasketballInfo.Infrastructure.Services;
+using BasketballInfo.Infrastructure.Services.Repositories;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -9,116 +10,113 @@ namespace BasketballInfo.Application.Contract
 {
     public class PlayerContract : IPlayerContract
     {
-        private readonly IBasketballInfoRepository _basketballInfoRepository;
+        private readonly ITeamRepository _teamRepository;
         private readonly IMapper _mapper;
 
-        public PlayerContract(IBasketballInfoRepository basketballInfoRepository, IMapper mapper)
+        public PlayerContract(ITeamRepository teamRepository, IMapper mapper)
         {
-            _basketballInfoRepository = basketballInfoRepository;
+            _teamRepository = teamRepository;
             _mapper = mapper;
         }
 
-        public IEnumerable<PlayerDto> GetAllPlayersByTeamId(int teamId)
-        {
-            if (!(_basketballInfoRepository.TeamForTeamIdExists(teamId)).Result)
-            {
-                return null;
-            }
+        //public IEnumerable<PlayerDto> GetAllPlayersByTeamIdAsync(int teamId)
+        //{
+        //    var team = _teamRepository.GetTeamById(teamId).Result;
 
-            var allPlayers = _basketballInfoRepository.GetAllPlayersByTeamIdAsync(teamId).Result;
+        //    if (team == null)
+        //    {
+        //        return null;
+        //    }
 
-            if (allPlayers == null)
-            {
-                return null;
-            }
+        //    var players = team.Players;
 
-            return (_mapper.Map<IEnumerable<PlayerDto>>(allPlayers));
-        }
+        //    return (_mapper.Map<IEnumerable<PlayerDto>>(players));
+        //}
 
-        public PlayerDto GetPlayerByPlayerId(int teamId, int playerId)
-        {
-            if (!(_basketballInfoRepository.TeamForTeamIdExists(teamId)).Result)
-            {
-                return null;
-            }
+        //public PlayerDto GetPlayerByPlayerId(int teamId, int playerId)
+        //{
+        //    if (!(_teamRepository.TeamForTeamIdExists(teamId)).Result)
+        //    {
+        //        return null;
+        //    }
 
-            var player = _basketballInfoRepository.GetPlayerByPlayerIdAsync(teamId, playerId).Result;
+        //    var player = _teamRepository.GetPlayerByPlayerIdAsync(teamId, playerId).Result;
 
-            if (player == null)
-            {
-                return null;
-            }
+        //    if (player == null)
+        //    {
+        //        return null;
+        //    }
 
-            return _mapper.Map<PlayerDto>(player);
-        }
+        //    return _mapper.Map<PlayerDto>(player);
+        //}
 
-        public async Task<PlayerDto> CreatePlayerByPlayerId(int teamId, PlayerForCreationDto playerDto)
-        {
-            if (!(_basketballInfoRepository.TeamForTeamIdExists(teamId)).Result)
-            {
-                return null;
-            }
+        //public async Task<PlayerDto> CreatePlayerByPlayerId(int teamId, PlayerForCreationDto playerDto)
+        //{
+        //    if (!(_teamRepository.TeamForTeamIdExists(teamId)).Result)
+        //    {
+        //        return null;
+        //    }
 
-            var finalPlayer = _mapper.Map<Player>(playerDto);
+        //    var finalPlayer = _mapper.Map<Player>(playerDto);
 
-            await _basketballInfoRepository.CreatePlayerByPlayerIdAsync(teamId, finalPlayer);
+        //    await _teamRepository.CreatePlayerByPlayerIdAsync(teamId, finalPlayer);
 
-            await _basketballInfoRepository.SaveChangesAsync();
+        //    await _teamRepository.SaveChangesAsync();
 
-            return _mapper.Map<PlayerDto>(finalPlayer);
+        //    return _mapper.Map<PlayerDto>(finalPlayer);
 
-        }
+        //}
 
-        public async Task<PlayerDto> UpdatePlayerByPlayerId(int teamId, int playerId, PlayerForUpdateDto playerDto)
-        {
-            if (!(_basketballInfoRepository.TeamForTeamIdExists(teamId)).Result)
-            {
-                return null;
-            }
+        //public async Task<PlayerDto> UpdatePlayerByPlayerId(int teamId, int playerId, PlayerForUpdateDto playerDto)
+        //{
+        //    if (!(_teamRepository.TeamForTeamIdExists(teamId)).Result)
+        //    {
+        //        return null;
+        //    }
 
-            var playerEntity = _basketballInfoRepository.GetPlayerByPlayerIdAsync(teamId, playerId).Result;
+        //    var playerEntity = _teamRepository.GetPlayerByPlayerIdAsync(teamId, playerId).Result;
 
-            if (playerEntity == null)
-            {
-                return null;
-            }
+        //    if (playerEntity == null)
+        //    {
+        //        return null;
+        //    }
 
 
-            var playerToReturn = _mapper.Map(playerDto, playerEntity);
+        //    var playerToReturn = _mapper.Map(playerDto, playerEntity);
 
-            var updatePlayerStatus = _basketballInfoRepository.UpdatePlayerByPlayerIdAsync(playerToReturn);
+        //    var updatePlayerStatus = _teamRepository.UpdatePlayerByPlayerIdAsync(playerToReturn);
 
-            if (updatePlayerStatus)
-            {
-                await _basketballInfoRepository.SaveChangesAsync();
-            }
+        //    if (updatePlayerStatus)
+        //    {
+        //        await _teamRepository.SaveChangesAsync();
+        //    }
 
-            var result = new PlayerDto();
+        //    var result = new PlayerDto();
 
-            return _mapper.Map(playerToReturn, result);
-        }
+        //    return _mapper.Map(playerToReturn, result);
+        //}
 
-        public async Task<PlayerDto> DeletePlayerByPlayerId(int teamId, int playerId)
-        {
-            if (!_basketballInfoRepository.TeamForTeamIdExists(teamId).Result)
-            {
-                return null;
-            }
+        //public async Task<PlayerDto> DeletePlayerByPlayerId(int teamId, int playerId)
+        //{
+        //    if (!_teamRepository.TeamForTeamIdExists(teamId).Result)
+        //    {
+        //        return null;
+        //    }
 
-            var playerEntity = _basketballInfoRepository.GetPlayerByPlayerIdAsync(teamId, playerId).Result;
+        //    var playerEntity = _teamRepository.GetPlayerByPlayerIdAsync(teamId, playerId).Result;
 
-            if (playerEntity == null)
-            {
-                return null;
-            }
+        //    if (playerEntity == null)
+        //    {
+        //        return null;
+        //    }
 
-            _basketballInfoRepository.DeletePlayerByPlayerIdAsync(playerEntity);
+        //    _teamRepository.DeletePlayerByPlayerIdAsync(playerEntity);
 
-            await _basketballInfoRepository.SaveChangesAsync();
+        //    await _teamRepository.SaveChangesAsync();
 
-            var result = new PlayerDto();
+        //    var result = new PlayerDto();
 
-            return _mapper.Map(playerEntity, result);
-        }
+        //    return _mapper.Map(playerEntity, result);
+        //}
     }
 }

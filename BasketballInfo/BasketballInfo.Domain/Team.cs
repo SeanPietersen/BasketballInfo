@@ -7,7 +7,7 @@ namespace BasketballInfo.Domain
         public int TeamId { get; set; }
         public string Name { get; set; }
         public string State { get; set; }
-        public ICollection<Player> Player { get; set; } = new List<Player>();
-        public ICollection<Coach> Coach { get; set; } = new List<Coach>();
+        public ICollection<Player> Players { get; set; } = new List<Player>();
+        public ICollection<Coach> Coaches { get; set; } = new List<Coach>();
     }
 }

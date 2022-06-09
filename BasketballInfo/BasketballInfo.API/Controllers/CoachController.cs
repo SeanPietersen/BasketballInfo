@@ -12,75 +12,75 @@ namespace BasketballInfo.API.Controllers
     [ApiController]
     public class CoachController : Controller
     {
-        private readonly ICoachContract _coach;
+        //private readonly ICoachContract _coach;
 
-        public CoachController(ICoachContract coach)
-        {
-            _coach = coach;
-        }
+        //public CoachController(ICoachContract coach)
+        //{
+        //    _coach = coach;
+        //}
 
-        [HttpGet]
-        public ActionResult<CoachDto> GetAllCoachesForTeamId(int teamId)
-        {
-            var coaches = _coach.GetAllCoachesForTeamId(teamId);
+        //[HttpGet]
+        //public ActionResult<CoachDto> GetAllCoachesForTeamId(int teamId)
+        //{
+        //    var coaches = _coach.GetAllCoachesForTeamId(teamId);
 
-            if(coaches == null)
-            {
-                return NotFound();
-            }
+        //    if(coaches == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return Ok(coaches);
-        }
+        //    return Ok(coaches);
+        //}
 
-        [HttpGet("{coachId}")]
-        public ActionResult<CoachDto> GetCoachByCoachIdForTeamId(int teamId, int coachId)
-        {
-            var coach = _coach.GetCoachByTeamIdAndCoachId(teamId, coachId);
+        //[HttpGet("{coachId}")]
+        //public ActionResult<CoachDto> GetCoachByCoachIdForTeamId(int teamId, int coachId)
+        //{
+        //    var coach = _coach.GetCoachByTeamIdAndCoachId(teamId, coachId);
 
-            if(coach == null)
-            {
-                return NotFound();
-            }
+        //    if(coach == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return Ok(coach);
-        }
+        //    return Ok(coach);
+        //}
 
-        [HttpPost]
-        public ActionResult<CoachDto> CreateCoachForTeamId(int teamId, CoachForCreationDto coachDto)
-        {
-            var coach = _coach.CreateCoachByCoachId(teamId, coachDto);
+        //[HttpPost]
+        //public ActionResult<CoachDto> CreateCoachForTeamId(int teamId, CoachForCreationDto coachDto)
+        //{
+        //    var coach = _coach.CreateCoachByCoachId(teamId, coachDto);
             
-            if(coach == null)
-            {
-                return NotFound();
-            }
-            return Ok(coach);
-        }
+        //    if(coach == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return Ok(coach);
+        //}
 
-        [HttpPut("{coachId}")]
-        public ActionResult<CoachDto> UpdateCoachByCoachIdForTeamId(int teamId, int coachId, CoachForUpdateDto coachDto)
-        {
-            var coachToUpdate = _coach.UpdateCoachByCoachId(teamId, coachId, coachDto);
+        //[HttpPut("{coachId}")]
+        //public ActionResult<CoachDto> UpdateCoachByCoachIdForTeamId(int teamId, int coachId, CoachForUpdateDto coachDto)
+        //{
+        //    var coachToUpdate = _coach.UpdateCoachByCoachId(teamId, coachId, coachDto);
             
-            if(coachToUpdate == null)
-            {
-                return NotFound();
-            }
+        //    if(coachToUpdate == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return Ok(coachToUpdate);
-        }
+        //    return Ok(coachToUpdate);
+        //}
 
-        [HttpDelete("{coachId}")]
-        public ActionResult<CoachDto> DeleteCoachByCoachIdForTeamId(int teamId, int coachId)
-        {
-            var coachToDelete = _coach.DeleteCoachByCoachId(teamId, coachId);
+        //[HttpDelete("{coachId}")]
+        //public ActionResult<CoachDto> DeleteCoachByCoachIdForTeamId(int teamId, int coachId)
+        //{
+        //    var coachToDelete = _coach.DeleteCoachByCoachId(teamId, coachId);
 
-            if(coachToDelete == null)
-            {
-                return NotFound();
-            }
+        //    if(coachToDelete == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return Ok(coachToDelete);
-        }
+        //    return Ok(coachToDelete);
+        //}
     }
 }

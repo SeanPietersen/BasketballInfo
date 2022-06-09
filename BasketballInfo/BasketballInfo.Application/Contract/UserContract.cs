@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using BasketballInfo.Application.Dto;
+using BasketballInfo.Domain;
 using BasketballInfo.Infrastructure.Services;
+using BasketballInfo.Infrastructure.Services.Repositories;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -8,32 +10,62 @@ namespace BasketballInfo.Application.Contract
 {
     public class UserContract : IUserContract
     {
-        private readonly IBasketballInfoRepository _basketballInfoRepository;
+        private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
 
-        public UserContract(IBasketballInfoRepository basketballInfoRepository, IMapper mapper)
+        public UserContract(IUserRepository userRepsitory, IMapper mapper)
         {
-            _basketballInfoRepository = basketballInfoRepository;
+            _userRepository = userRepsitory;
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<UserDto>> GetAllUsers()
+        public UserDto RegisterUser(RegisterUserDto userDto)
         {
-            var userEntities = await _basketballInfoRepository.GetAllUsersAsync();
+            //check if email exists
+            var userEmailCheck = _userRepository.GetUserByEmailAsync(userDto.Email);
 
-            return _mapper.Map<IEnumerable<UserDto>>(userEntities);
-        }
-
-        public async Task<UserDto> GetUserByUserId(int userId)
-        {
-            var user = await _basketballInfoRepository.GetUserByUserIdAsync(userId);
-
-            if (user == null)
+            if (userEmailCheck != null)
             {
+                // email exists
                 return null;
             }
 
-            return (_mapper.Map<UserDto>(user));
+            //creating a user
+            var createdUser = new User()
+            {
+                FirstName = userDto.FirstName,
+                LastName = userDto.LastName,
+                Email = userDto.Email,
+                Password = userDto.Password
+            };
+
+            var user = _userRepository.RegisterUser(createdUser);
+
+            return _mapper.Map<UserDto>(user);
         }
+
+        //public Task<UserDto> RegisterUser(string userName, string email, RegisterUserDto userDto)
+        //{
+        //    throw new System.NotImplementedException();
+        //}
+
+        //public async Task<IEnumerable<UserDto>> GetAllUsers()
+        //{
+        //    var userEntities = await _basketballInfoRepository.GetAllUsersAsync();
+
+        //    return _mapper.Map<IEnumerable<UserDto>>(userEntities);
+        //}
+
+        //public async Task<UserDto> GetUserByUserId(int userId)
+        //{
+        //    var user = await _basketballInfoRepository.GetUserByUserIdAsync(userId);
+
+        //    if (user == null)
+        //    {
+        //        return null;
+        //    }
+
+        //    return (_mapper.Map<UserDto>(user));
+        //}
     }
 }
