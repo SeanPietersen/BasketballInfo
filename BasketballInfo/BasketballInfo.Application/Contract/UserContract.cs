@@ -2,6 +2,7 @@
 using BasketballInfo.Application.Dto;
 using BasketballInfo.Domain;
 using BasketballInfo.Infrastructure.Services.Repositories;
+using System.Threading.Tasks;
 
 namespace BasketballInfo.Application.Contract
 {
@@ -16,10 +17,10 @@ namespace BasketballInfo.Application.Contract
             _mapper = mapper;
         }
 
-        public UserDto RegisterUser(RegisterUserDto userDto)
+        public async Task<UserDto> RegisterUser(RegisterUserDto userDto)
         {
             //check if email exists
-            var userEmailCheck = _userRepository.GetUserByEmailAsync(userDto.Email);
+            var userEmailCheck = await _userRepository.GetUserByEmailAsync(userDto.Email);
 
             if (userEmailCheck != null)
             {

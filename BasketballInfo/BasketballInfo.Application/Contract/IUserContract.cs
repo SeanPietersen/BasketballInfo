@@ -1,5 +1,4 @@
 ﻿using BasketballInfo.Application.Dto;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BasketballInfo.Application.Contract
@@ -8,6 +7,6 @@ namespace BasketballInfo.Application.Contract
     {
         //Task<IEnumerable<UserDto>> GetAllUsers();
         //Task<UserDto> GetUserByUserId(int userId);
-        UserDto RegisterUser(RegisterUserDto userDto);
+        Task<UserDto> RegisterUser(RegisterUserDto userDto);
     }
 }

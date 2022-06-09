@@ -18,7 +18,16 @@ namespace BasketballInfo.Infrastructure.Services.Repositories
 
         public async Task<User> GetUserByEmailAsync(string email)
         {
-            return await _context.Users.Where(c => c.Email == email).FirstOrDefaultAsync();
+            try
+            {
+                return await _context.Users.Where(s => s.Email == email).FirstOrDefaultAsync<User>();
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            
         }
 
         public async Task<User> RegisterUserAsync(User user)

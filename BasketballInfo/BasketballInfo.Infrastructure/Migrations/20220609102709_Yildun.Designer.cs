@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BasketballInfo.Infrastructure.Migrations
 {
     [DbContext(typeof(BasketballInfoContext))]
-    [Migration("20220609102258_Yildun")]
+    [Migration("20220609102709_Yildun")]
     partial class Yildun
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

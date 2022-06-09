@@ -20,7 +20,7 @@ namespace BasketballInfo.API.Controllers
         [HttpPost("register")]
         public ActionResult<UserDto> RegisterUser([FromBody] RegisterUserDto userDto)
         {
-            var user = _userContract.RegisterUser(userDto);
+            var user = _userContract.RegisterUser(userDto).Result;
 
             if(user == null)
             {
