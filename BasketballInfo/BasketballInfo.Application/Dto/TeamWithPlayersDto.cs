@@ -8,11 +8,11 @@ namespace BasketballInfo.Application.Dto
         {
             get
             {
-                return Player.Count;
+                return Players.Count;
             }
         }
 
-        public ICollection<PlayerDto> Player { get; set; } = new List<PlayerDto>();
+        public ICollection<PlayerDto> Players { get; set; } = new List<PlayerDto>();
 
     }
 }

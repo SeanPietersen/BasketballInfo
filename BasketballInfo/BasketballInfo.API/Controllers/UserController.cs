@@ -52,8 +52,8 @@ namespace BasketballInfo.API.Controllers
             return Ok(user);
         }
 
-        [HttpGet("{id}")]
-        public ActionResult<UserDto> GetUserByUserId(int userId)
+        [HttpGet("{userId}")]
+        public ActionResult<UserDto> GetUserById(int userId)
         {
             var user = _userContract.GetUserById(userId).Result;
 

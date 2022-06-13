@@ -27,25 +27,22 @@ namespace BasketballInfo.API.Controllers
         public ActionResult<IEnumerable<TeamDto>> GetAllTeams()
         {
 
-            //var teams = _teamContract.GetAllTeams().Result;
+            var teams = _teamContract.GetAllTeams().Result;
 
-            //return Ok(teams);
-            return Ok();
+            return Ok(teams);
         }
 
-        [HttpGet("{id}")]
-
+        [HttpGet("{teamId}")]
         public ActionResult<TeamDto> GetTeamByTeamId(int teamId, bool includePlayers, bool includeCoaches)
         {
-            //var team = _teamContract.GetTeamByTeamId(teamId, includePlayers, includeCoaches).Result;
+            var team = _teamContract.GetTeamById(teamId, includePlayers, includeCoaches).Result;
 
-            //if (team == null)
-            //{
-            //    return NotFound();
-            //}
+            if (team == null)
+            {
+                return NotFound();
+            }
 
-            //return Ok(team);
-            return Ok();
+            return Ok(team);
         }
     }
 }
