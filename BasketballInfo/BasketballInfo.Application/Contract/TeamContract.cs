@@ -10,10 +10,10 @@ namespace BasketballInfo.Application.Contract
 {
     public class TeamContract : ITeamContract
     {
-        private readonly ITeamRepository _teamRepository;
+        private readonly Infrastructure.Services.Repositories.ITeamRepository _teamRepository;
         private readonly IMapper _mapper;
 
-        public TeamContract(ITeamRepository teamRepository, IMapper mapper)
+        public TeamContract(Infrastructure.Services.Repositories.ITeamRepository teamRepository, IMapper mapper)
         {
             _teamRepository = teamRepository;
             _mapper = mapper;

@@ -6,7 +6,7 @@ namespace BasketballInfo.Application.Contract
 {
     public interface IPlayerContract
     {
-        //IEnumerable<PlayerDto> GetAllPlayersByTeamIdAsync(int teamId);
+        IEnumerable<PlayerDto> GetAllPlayersForTeam(int teamId);
         //PlayerDto GetPlayerByPlayerId(int teamId, int playerId);
         //Task<PlayerDto> CreatePlayerByPlayerId(int teamId, PlayerForCreationDto playerDto);
         //Task<PlayerDto> UpdatePlayerByPlayerId(int teamId, int playerId, PlayerForUpdateDto playerDto);

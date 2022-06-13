@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BasketballInfo.Infrastructure.Services
+namespace BasketballInfo.Infrastructure.Services.Repositories
 {
     public class PlayerRepository : IPlayerRepository
     {
@@ -16,10 +16,11 @@ namespace BasketballInfo.Infrastructure.Services
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
-        //public async Task<IEnumerable<Player>> GetAllPlayersByTeamIdAsync(int teamId)
-        //{
-        //    return await _context.Players.Where(prop => prop.TeamId == teamId).ToListAsync();
-        //}
+
+        public async Task<IEnumerable<Player>> GetAllPlayersForTeamAsync(int teamId)
+        {
+            return await _context.Players.Where(prop => prop.TeamId == teamId).ToListAsync();
+        }
 
         //public async Task<Player> GetPlayerByPlayerIdAsync(int teamId, int playerId)
         //{

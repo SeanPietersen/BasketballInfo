@@ -10,28 +10,30 @@ namespace BasketballInfo.Application.Contract
 {
     public class PlayerContract : IPlayerContract
     {
-        private readonly ITeamRepository _teamRepository;
+        private readonly IPlayerRepository _playerRepository;
+        private readonly Infrastructure.Services.Repositories.ITeamRepository _teamRepository;
         private readonly IMapper _mapper;
 
-        public PlayerContract(ITeamRepository teamRepository, IMapper mapper)
+        public PlayerContract(IPlayerRepository playerRepository, Infrastructure.Services.Repositories.ITeamRepository teamRepository, IMapper mapper)
         {
+            _playerRepository = playerRepository;
             _teamRepository = teamRepository;
             _mapper = mapper;
         }
 
-        //public IEnumerable<PlayerDto> GetAllPlayersByTeamIdAsync(int teamId)
-        //{
-        //    var team = _teamRepository.GetTeamById(teamId).Result;
+        public IEnumerable<PlayerDto> GetAllPlayersForTeam(int teamId)
+        {
+            var team = _teamRepository.GetTeamByIdAsync(teamId, true, false).Result;
 
-        //    if (team == null)
-        //    {
-        //        return null;
-        //    }
+            if (team == null)
+            {
+                return null;
+            }
 
-        //    var players = team.Players;
+            var players = team.Players;
 
-        //    return (_mapper.Map<IEnumerable<PlayerDto>>(players));
-        //}
+            return (_mapper.Map<IEnumerable<PlayerDto>>(players));
+        }
 
         //public PlayerDto GetPlayerByPlayerId(int teamId, int playerId)
         //{

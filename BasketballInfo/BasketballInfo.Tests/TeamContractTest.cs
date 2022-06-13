@@ -17,10 +17,10 @@ namespace BasketballInfo.Tests
     public class TeamContractTest: ContextTest
     {
         private readonly ITeamContract _teamContract;
-        private readonly ITeamRepository _teamRepository;
+        private readonly Infrastructure.Services.Repositories.ITeamRepository _teamRepository;
         public TeamContractTest()
         {
-            _teamRepository = Substitute.For<ITeamRepository>();
+            _teamRepository = Substitute.For<Infrastructure.Services.Repositories.ITeamRepository>();
             _teamContract = new TeamContract(_teamRepository, _mapper);
         }
 

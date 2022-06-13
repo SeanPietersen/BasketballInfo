@@ -9,9 +9,9 @@ namespace BasketballInfo.Application.Profiles
         public PlayerProfile()
         {
             CreateMap<Player, PlayerDto>();
-            CreateMap<PlayerForCreationDto, Player>();
-            CreateMap<PlayerForUpdateDto, Player>();
-            CreateMap<Player, PlayerForUpdateDto>();
+            CreateMap<CreatePlayerDto, Player>();
+            CreateMap<UpdatePlayerDto, Player>();
+            CreateMap<Player, UpdatePlayerDto>();
         }
     }
 }

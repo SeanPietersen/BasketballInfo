@@ -1,7 +1,7 @@
 ﻿using BasketballInfo.Application.Contract;
 using BasketballInfo.Application.Dto;
 using BasketballInfo.Domain;
-using BasketballInfo.Infrastructure.Services;
+using BasketballInfo.Infrastructure.Services.Repositories;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
 using System;
@@ -14,70 +14,76 @@ namespace BasketballInfo.Tests
 {
     public class PlayerContractTest: ContextTest
     {
-        //private readonly IPlayerContract _sut;
-        //private readonly IBasketballInfoRepository _basketballInfoRepository;
+        private readonly IPlayerContract _playerContract;
+        private readonly ITeamRepository _teamRepository;
+        private readonly IPlayerRepository _playerRepository;
 
-        //public PlayerContractTest()
-        //{
-        //    _basketballInfoRepository = Substitute.For<IBasketballInfoRepository>();
-        //    _sut = new PlayerContract(_basketballInfoRepository, _mapper);
-        //}
+        public PlayerContractTest()
+        {
+            _teamRepository = Substitute.For<ITeamRepository>();
+            _playerRepository = Substitute.For<IPlayerRepository>();
+            _playerContract = new PlayerContract(_playerRepository, _teamRepository, _mapper);
+        }
 
-        //[Fact]
-        //public void GetAllPlayersForTeamId_ShouldReturnNull_InvalidTeamId()
-        //{
-        //    //Arrange
-        //    var teamId = 0;
+        [Fact]
+        public void GetAllPlayersForTeam_ShouldReturnNull_InvalidTeamId()
+        {
+            //Arrange
+            var teamId = 0;
 
-        //    _basketballInfoRepository.GetAllPlayersByTeamIdAsync(teamId).ReturnsNull();
+            _teamRepository.GetTeamByIdAsync(teamId).ReturnsNull();
 
-        //    //Act
-        //    IEnumerable<PlayerDto> actual =  _sut.GetAllPlayersByTeamIdAsync(teamId);
+            //Act
+            IEnumerable<PlayerDto> actual = _playerContract.GetAllPlayersForTeam(teamId);
 
-        //    //Assert
-        //    Assert.Null(actual);
-        //}
+            //Assert
+            Assert.Null(actual);
+        }
 
-        //[Fact]
-        //public void GetAllPlayersForTeamId_IsSuccessful()
-        //{
-        //    //Arrange
-        //    var teamId = 1;
+        [Fact]
+        public void GetAllPlayersForTeamId_IsSuccessful()
+        {
+            //Arrange
+            var teamId = 1;
 
-        //    var listOfPlayers = new List<Player>()
-        //    {
-        //        new Player()
-        //        {
-        //            PlayerId = 1,
-        //            FirstName = "Sean",
-        //            LastName = "Pietersen",
-        //            DateOfBirth = new DateTime(1997,01,14),
-        //            PlayerHeight = 1.76,
-        //            PlayerWeight = 82
-        //        },
-        //        new Player()
-        //        {
-        //            PlayerId = 2,
-        //            FirstName = "Jason",
-        //            LastName = "Pietersen",
-        //            DateOfBirth = new DateTime(1994,04,08),
-        //            PlayerHeight = 1.78,
-        //            PlayerWeight = 90
-        //        }
-        //    };
+            var teamInDb = new Team()
+            {
+                TeamId = 1,
+                Name = "MOCK Test 1",
+                State = "MOCK Test 1 State",
+                Players = new List<Player>()
+                {
+                    new Player()
+                    {
+                        PlayerId = 1,
+                        FirstName = "Sean",
+                        LastName = "Pietersen",
+                        DateOfBirth = new DateTime(1997,01,14),
+                        PlayerHeight = 1.76,
+                        PlayerWeight = 82
+                    },
+                    new Player()
+                    {
+                        PlayerId = 2,
+                        FirstName = "Jason",
+                        LastName = "Pietersen",
+                        DateOfBirth = new DateTime(1994,04,08),
+                        PlayerHeight = 1.78,
+                        PlayerWeight = 90
+                    }
+                }
+            };
 
-        //    _basketballInfoRepository.TeamForTeamIdExists(teamId).Returns(true);
-
-        //    _basketballInfoRepository.GetAllPlayersByTeamIdAsync(teamId).Returns(listOfPlayers);
+            _teamRepository.GetTeamByIdAsync(teamId).Returns(teamInDb);
 
 
-        //    //Act
-        //    IEnumerable<PlayerDto> actual = _sut.GetAllPlayersByTeamIdAsync(teamId);
+            //Act
+            IEnumerable<PlayerDto> actual = _playerContract.GetAllPlayersForTeam(teamId);
 
-        //    //Assert
-        //    Assert.Equal(listOfPlayers.Count, actual.ToList().Count);
+            //Assert
+            Assert.Equal(teamInDb.Players.Count, actual.ToList().Count);
 
-        //}
+        }
 
         //[Fact]
         //public void GetPlayerByPlayerIdAndTeamId_ShouldReturnNull_InvalidTeamId()

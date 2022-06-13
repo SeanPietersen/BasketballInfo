@@ -9,6 +9,8 @@ C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.API\bin\
 C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.API\bin\Debug\net5.0\BasketballInfo.API.pdb
 C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.API\bin\Debug\net5.0\AutoMapper.dll
 C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.API\bin\Debug\net5.0\Humanizer.dll
+C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.API\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.API\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.API\bin\Debug\net5.0\Microsoft.Data.SqlClient.dll
 C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.API\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
 C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.API\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
@@ -24,6 +26,7 @@ C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.API\bin\
 C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.API\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.API\bin\Debug\net5.0\Microsoft.OpenApi.dll
 C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.API\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.API\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
 C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.API\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.API\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.API\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -65,6 +68,3 @@ C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.API\obj\
 C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.API\obj\Debug\net5.0\ref\BasketballInfo.API.dll
 C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.API\obj\Debug\net5.0\BasketballInfo.API.pdb
 C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.API\obj\Debug\net5.0\BasketballInfo.API.genruntimeconfig.cache
-C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.API\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
-C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.API\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
-C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.API\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll

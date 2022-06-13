@@ -36,7 +36,7 @@ namespace BasketballInfo.API
             });
 
             services.AddTransient<ITeamContract, TeamContract>();
-            //services.AddTransient<IPlayerContract, PlayerContract>();
+            services.AddTransient<IPlayerContract, PlayerContract>();
             //services.AddTransient<ICoachContract, CoachContract>();
             services.AddTransient<IUserContract, UserContract>();
 
@@ -44,6 +44,7 @@ namespace BasketballInfo.API
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ITeamRepository, TeamRepository>();
+            services.AddScoped<IPlayerRepository, PlayerRepository>();
 
             var mapperConfig = new MapperConfiguration(mc =>
             {

@@ -2,7 +2,7 @@
 
 namespace BasketballInfo.Application.Dto
 {
-    public class CoachForCreationDto
+    public class CreateCoachDto
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
