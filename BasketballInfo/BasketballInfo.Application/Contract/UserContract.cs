@@ -43,7 +43,7 @@ namespace BasketballInfo.Application.Contract
             return _mapper.Map<UserDto>(createdUser);
         }
 
-        public async Task<UserDto> UserSignUp(UserSignUpDto userDto)
+        public async Task<UserDto> UserSignUp(UserSignInDto userDto)
         {
             //check if email exists
             var userEmailCheck = await _userRepository.GetUserByEmailAsync(userDto.Email);

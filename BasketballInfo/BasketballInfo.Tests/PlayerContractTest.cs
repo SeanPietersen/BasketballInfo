@@ -85,94 +85,130 @@ namespace BasketballInfo.Tests
 
         }
 
-        //[Fact]
-        //public void GetPlayerByPlayerIdAndTeamId_ShouldReturnNull_InvalidTeamId()
-        //{
-        //    //Arrange
-        //    var teamId = 0;
-        //    var playerId = 1;
+        [Fact]
+        public void GetPlayerByPlayerIdAndTeamId_ShouldReturnNull_InvalidTeamId()
+        {
+            //Arrange
+            var teamId = 0;
+            var playerId = 1;
 
-        //    var playerInfo =  new Player()
-        //    {                  
-        //        PlayerId = 1,
-        //        FirstName = "Sean",
-        //        LastName = "Pietersen",
-        //        DateOfBirth = new DateTime(1997,01,14),
-        //        PlayerHeight = 1.76,
-        //        PlayerWeight = 82
-        //    };
+            _teamRepository.GetTeamByIdAsync(teamId).ReturnsNull();
 
-        //    _basketballInfoRepository.TeamForTeamIdExists(teamId).Returns(false);
-
-        //    _basketballInfoRepository.GetPlayerByPlayerIdAsync(teamId, playerId).ReturnsNull();
+            _playerRepository.GetPlayerByIdAsync(teamId, playerId).ReturnsNull();
 
 
-        //    //Act
-        //    var actual = _sut.GetPlayerByPlayerId(teamId, playerId);
+            //Act
+            var actual = _playerContract.GetPlayerById(teamId, playerId);
 
-        //    //Assert
-        //    Assert.Null(actual);
+            //Assert
+            Assert.Null(actual);
 
-        //}
+        }
 
-        //[Fact]
-        //public void GetPlayerByPlayerIdAndTeamId_ShouldReturnNull_InvalidPlayerId()
-        //{
-        //    //Arrange
-        //    var teamId = 1;
-        //    var playerId = 0;
+        [Fact]
+        public void GetPlayerByPlayerIdAndTeamId_ShouldReturnNull_InvalidPlayerId()
+        {
+            //Arrange
+            var teamId = 1;
+            var playerId = 0;
 
-        //    var playerInfo = new Player()
-        //    {
-        //        PlayerId = 1,
-        //        FirstName = "Sean",
-        //        LastName = "Pietersen",
-        //        DateOfBirth = new DateTime(1997, 01, 14),
-        //        PlayerHeight = 1.76,
-        //        PlayerWeight = 82
-        //    };
+            var teamInDb = new Team()
+            {
+                TeamId = 1,
+                Name = "MOCK Test 1",
+                State = "MOCK Test 1 State",
+                Players = new List<Player>()
+                {
+                    new Player()
+                    {
+                        PlayerId = 1,
+                        FirstName = "Sean",
+                        LastName = "Pietersen",
+                        DateOfBirth = new DateTime(1997,01,14),
+                        PlayerHeight = 1.76,
+                        PlayerWeight = 82
+                    },
+                    new Player()
+                    {
+                        PlayerId = 2,
+                        FirstName = "Jason",
+                        LastName = "Pietersen",
+                        DateOfBirth = new DateTime(1994,04,08),
+                        PlayerHeight = 1.78,
+                        PlayerWeight = 90
+                    }
+                }
+            };
 
-        //    _basketballInfoRepository.TeamForTeamIdExists(teamId).Returns(true);
+            _teamRepository.GetTeamByIdAsync(teamId, true, false).Returns(teamInDb);
 
-        //    _basketballInfoRepository.GetPlayerByPlayerIdAsync(teamId, playerId).ReturnsNull();
-
-
-        //    //Act
-        //    var actual = _sut.GetPlayerByPlayerId(teamId, playerId);
-
-        //    //Assert
-        //    Assert.Null(actual);
-        //}
-
-        //[Fact]
-        //public void GetPlayerByPlayerIdAndTeamId_IsSuccessful()
-        //{
-        //    //Arrange
-        //    var teamId = 1;
-        //    var playerId = 1;
-
-        //    var playerInfo = new Player()
-        //    {
-        //        PlayerId = 1,
-        //        FirstName = "Sean",
-        //        LastName = "Pietersen",
-        //        DateOfBirth = new DateTime(1997, 01, 14),
-        //        PlayerHeight = 1.76,
-        //        PlayerWeight = 82
-        //    };
-
-        //    _basketballInfoRepository.TeamForTeamIdExists(teamId).Returns(true);
-
-        //    _basketballInfoRepository.GetPlayerByPlayerIdAsync(teamId, playerId).Returns(playerInfo);
+            _playerRepository.GetPlayerByIdAsync(teamId, playerId).ReturnsNull();
 
 
-        //    //Act
-        //    PlayerDto actual = _sut.GetPlayerByPlayerId(teamId, playerId);
+            //Act
+            var actual = _playerContract.GetPlayerById(teamId, playerId);
 
-        //    //Assert
-        //    Assert.Equal(playerInfo.FirstName, actual.FirstName);
-        //    Assert.Equal(playerInfo.LastName, actual.LastName);
-        //}
+            //Assert
+            Assert.Null(actual);
+        }
+
+        [Fact]
+        public void GetPlayerByPlayerIdAndTeamId_IsSuccessful()
+        {
+            //Arrange
+            var teamId = 1;
+            var playerId = 1;
+
+            var playerInfo = new Player()
+            {
+                PlayerId = 1,
+                FirstName = "Sean",
+                LastName = "Pietersen",
+                DateOfBirth = new DateTime(1997, 01, 14),
+                PlayerHeight = 1.76,
+                PlayerWeight = 82
+            };
+
+            var teamInDb = new Team()
+            {
+                TeamId = 1,
+                Name = "MOCK Test 1",
+                State = "MOCK Test 1 State",
+                Players = new List<Player>()
+                {
+                    new Player()
+                    {
+                        PlayerId = 1,
+                        FirstName = "Sean",
+                        LastName = "Pietersen",
+                        DateOfBirth = new DateTime(1997,01,14),
+                        PlayerHeight = 1.76,
+                        PlayerWeight = 82
+                    },
+                    new Player()
+                    {
+                        PlayerId = 2,
+                        FirstName = "Jason",
+                        LastName = "Pietersen",
+                        DateOfBirth = new DateTime(1994,04,08),
+                        PlayerHeight = 1.78,
+                        PlayerWeight = 90
+                    }
+                }
+            };
+
+            _teamRepository.GetTeamByIdAsync(teamId, true, false).Returns(teamInDb);
+
+            _playerRepository.GetPlayerByIdAsync(teamId, playerId).Returns(playerInfo);
+
+
+            //Act
+            var actual = _playerContract.GetPlayerById(teamId, playerId);
+
+            //Assert
+            Assert.Equal(playerInfo.FirstName, actual.FirstName);
+            Assert.Equal(playerInfo.LastName, actual.LastName);
+        }
 
         //[Fact]
         //public void CreatePlayerByPlayerId_ShouldReturnNull_InvalidTeamId()

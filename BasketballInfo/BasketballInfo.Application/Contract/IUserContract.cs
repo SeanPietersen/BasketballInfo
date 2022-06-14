@@ -9,7 +9,7 @@ namespace BasketballInfo.Application.Contract
         
         
         Task<UserDto> RegisterUser(RegisterUserDto userDto);
-        Task<UserDto> UserSignUp(UserSignUpDto userDto);
+        Task<UserDto> UserSignUp(UserSignInDto userDto);
         Task<IEnumerable<UserDto>> GetAllUsers();
         Task<UserDto> GetUserById(int userId);
     }

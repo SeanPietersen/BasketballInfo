@@ -39,6 +39,7 @@ namespace BasketballInfo.API
             services.AddTransient<IPlayerContract, PlayerContract>();
             //services.AddTransient<ICoachContract, CoachContract>();
             services.AddTransient<IUserContract, UserContract>();
+            services.AddTransient<IAuthenticationContract, AuthenticationContract>();
 
             services.AddDbContext<BasketballInfoContext>(opt => opt.UseSqlServer(Configuration["ConnectionStrings:BasketballInfoDBConnectionStringSqlServer"]));
 
@@ -57,6 +58,8 @@ namespace BasketballInfo.API
             IMapper mapper = mapperConfig.CreateMapper();
 
             services.AddSingleton(mapper);
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -72,6 +75,8 @@ namespace BasketballInfo.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthorization();
 
             app.UseAuthorization();
 

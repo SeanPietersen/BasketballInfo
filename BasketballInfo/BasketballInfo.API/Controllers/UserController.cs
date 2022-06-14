@@ -1,5 +1,6 @@
 ﻿using BasketballInfo.Application.Contract;
 using BasketballInfo.Application.Dto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -31,7 +32,7 @@ namespace BasketballInfo.API.Controllers
         }
 
         [HttpPost("signin")]
-        public ActionResult<UserDto> UserSignIn([FromBody] UserSignUpDto userDto)
+        public ActionResult<UserDto> UserSignIn([FromBody] UserSignInDto userDto)
         {
             var user = _userContract.UserSignUp(userDto).Result;
 
@@ -43,6 +44,7 @@ namespace BasketballInfo.API.Controllers
             return Ok(user);
         }
 
+        [Authorize]
         [HttpGet]
         public ActionResult<IEnumerable<UserDto>> GetAllUsers()
         {
@@ -52,6 +54,7 @@ namespace BasketballInfo.API.Controllers
             return Ok(user);
         }
 
+        [Authorize]
         [HttpGet("{userId}")]
         public ActionResult<UserDto> GetUserById(int userId)
         {

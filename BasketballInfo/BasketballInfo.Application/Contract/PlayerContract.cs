@@ -35,33 +35,44 @@ namespace BasketballInfo.Application.Contract
             return (_mapper.Map<IEnumerable<PlayerDto>>(players));
         }
 
-        //public PlayerDto GetPlayerByPlayerId(int teamId, int playerId)
+        public PlayerDto GetPlayerById(int teamId, int playerId)
+        {
+            var team = _teamRepository.GetTeamByIdAsync(teamId, true, false).Result;
+
+            if (team == null)
+            {
+                return null;
+            }
+
+            var player = _playerRepository.GetPlayerByIdAsync(teamId, playerId).Result;
+
+            if (player == null)
+            {
+                return null;
+            }
+
+            return _mapper.Map<PlayerDto>(player);
+        }
+
+        //public async Task<PlayerDto> CreatePlayerById(int teamId, CreatePlayerDto playerDto)
         //{
-        //    if (!(_teamRepository.TeamForTeamIdExists(teamId)).Result)
+        //    var team = _teamRepository.GetTeamByIdAsync(teamId, true, false).Result;
+
+        //    if (team == null)
         //    {
         //        return null;
         //    }
 
-        //    var player = _teamRepository.GetPlayerByPlayerIdAsync(teamId, playerId).Result;
-
-        //    if (player == null)
+        //    var createdPlayer = new Player()
         //    {
-        //        return null;
-        //    }
+        //        FirstName = playerDto.FirstName,
+        //        LastName = playerDto.LastName,
+        //        DateOfBirth = playerDto.DateOfBirth,
+        //        PlayerHeight = playerDto.PlayerHeight,
+        //        PlayerWeight = playerDto.PlayerWeight
+        //    };
 
-        //    return _mapper.Map<PlayerDto>(player);
-        //}
-
-        //public async Task<PlayerDto> CreatePlayerByPlayerId(int teamId, PlayerForCreationDto playerDto)
-        //{
-        //    if (!(_teamRepository.TeamForTeamIdExists(teamId)).Result)
-        //    {
-        //        return null;
-        //    }
-
-        //    var finalPlayer = _mapper.Map<Player>(playerDto);
-
-        //    await _teamRepository.CreatePlayerByPlayerIdAsync(teamId, finalPlayer);
+        //    await _playerRepository.CreatePlayerByPlayerIdAsync(teamId, finalPlayer);
 
         //    await _teamRepository.SaveChangesAsync();
 

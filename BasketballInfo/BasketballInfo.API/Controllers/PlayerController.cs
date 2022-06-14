@@ -1,5 +1,6 @@
 ﻿using BasketballInfo.Application.Contract;
 using BasketballInfo.Application.Dto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 namespace BasketballInfo.API.Controllers
 {
     [Route("api/teams/{teamId}/player")]
+    [Authorize]
     [ApiController]
     public class PlayerController : Controller
     {
@@ -31,30 +33,30 @@ namespace BasketballInfo.API.Controllers
             return Ok(players);
         }
 
-        //    [HttpGet("{playerId}")]
-        //    public ActionResult <PlayerDto> GetPlayerByPlayerIdForATeamId(int teamId, int playerId )
-        //    {
-        //        var player = _player.GetPlayerByPlayerId(teamId, playerId);
+        [HttpGet("{playerId}")]
+        public ActionResult<PlayerDto> GetPlayerForTeamId(int teamId, int playerId)
+        {
+            var player = _playerContract.GetPlayerById(teamId, playerId);
 
-        //        if (player == null)
-        //        {
-        //            return NotFound();
-        //        }
-        //        return Ok(player);
+            if (player == null)
+            {
+                return NotFound();
+            }
+            return Ok(player);
+        }
+
+        //[HttpPost]
+        //public ActionResult<PlayerDto> CreatePlayerForTeamId(int teamId, CreatePlayerDto playerDto)
+        //{
+        //    var playerToCreate = _playerContract.CreatePlayerByPlayerId(teamId, playerDto).Result;
+
+        //    if (playerToCreate == null)
+        //    {
+        //        return NotFound();
         //    }
 
-        //    [HttpPost]
-        //    public ActionResult <PlayerDto> CreatePlayerByPlayerIdForTeamId(int teamId, PlayerForCreationDto playerDto)
-        //    {
-        //        var playerToCreate = _player.CreatePlayerByPlayerId(teamId, playerDto).Result;
-
-        //        if(playerToCreate == null)
-        //        {
-        //            return NotFound();
-        //        }
-
-        //        return Ok(playerToCreate);
-        //    }
+        //    return Ok(playerToCreate);
+        //}
 
         //    [HttpPut("{playerId}")]
         //    public ActionResult <PlayerDto> UpdatePlayerByPlayerId(int teamId, int playerId, PlayerForUpdateDto playerDto)

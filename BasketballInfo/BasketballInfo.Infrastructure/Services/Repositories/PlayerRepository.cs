@@ -22,12 +22,12 @@ namespace BasketballInfo.Infrastructure.Services.Repositories
             return await _context.Players.Where(prop => prop.TeamId == teamId).ToListAsync();
         }
 
-        //public async Task<Player> GetPlayerByPlayerIdAsync(int teamId, int playerId)
-        //{
-        //    return await _context.Players.Where(c => c.TeamId == teamId && c.PlayerId == playerId).FirstOrDefaultAsync();
-        //}
+        public async Task<Player> GetPlayerByIdAsync(int teamId, int playerId)
+        {
+            return await _context.Players.Where(c => c.TeamId == teamId && c.PlayerId == playerId).FirstOrDefaultAsync();
+        }
 
-        //public async Task CreatePlayerByPlayerIdAsync(int teamId, Player player)
+        //public async Task CreatePlayerByIdAsync(int teamId, Player player)
         //{
         //    var teamToReturn = await GetTeamByTeamIdAsync(teamId, false, false);
         //    if (teamToReturn != null)

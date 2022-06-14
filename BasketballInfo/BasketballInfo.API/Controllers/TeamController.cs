@@ -1,17 +1,13 @@
 ﻿using BasketballInfo.Application.Contract;
 using BasketballInfo.Application.Dto;
-using BasketballInfo.Domain;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BasketballInfo.API.Controllers
 {
     [ApiController]
-
+    [Authorize]
     [Route("api/teams")]
     public class TeamController : Controller
     {

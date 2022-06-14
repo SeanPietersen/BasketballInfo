@@ -141,7 +141,7 @@ namespace BasketballInfo.Tests
              };
 
 
-            var signUpUserDto = new UserSignUpDto()
+            var signUpUserDto = new UserSignInDto()
             {
                 Email = "pfpietersen@gmail.com",
                 Password = "Sean2563"
@@ -169,7 +169,7 @@ namespace BasketballInfo.Tests
                 Password = "Jason2563"
             };
 
-            var signUpUserDto = new UserSignUpDto()
+            var signUpUserDto = new UserSignInDto()
             {
                 Email = "jase.pietersen@gmail.com",
                 Password = "Sean2563"
@@ -197,7 +197,7 @@ namespace BasketballInfo.Tests
                 Password = "Jason2563"
             };
 
-            var signUpUserDto = new UserSignUpDto()
+            var signUpUserDto = new UserSignInDto()
             {
                 Email = "jase.pietersen@gmail.com",
                 Password = "Jason2563"

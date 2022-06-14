@@ -1,5 +1,6 @@
 ﻿using BasketballInfo.Application.Contract;
 using BasketballInfo.Application.Dto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 namespace BasketballInfo.API.Controllers
 {
     [Route("api/team/{teamId}/coach")]
+    [Authorize]
     [ApiController]
     public class CoachController : Controller
     {
