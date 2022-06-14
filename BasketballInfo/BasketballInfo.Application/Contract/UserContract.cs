@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BasketballInfo.Application.Dto;
+using BasketballInfo.Application.Services;
 using BasketballInfo.Domain;
 using BasketballInfo.Infrastructure.Services.Repositories;
 using System.Collections.Generic;
@@ -11,11 +12,13 @@ namespace BasketballInfo.Application.Contract
     {
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
+        private readonly IJwtService _jwtService;
 
-        public UserContract(IUserRepository userRepsitory, IMapper mapper)
+        public UserContract(IUserRepository userRepsitory, IMapper mapper, IJwtService jwtService)
         {
             _userRepository = userRepsitory;
             _mapper = mapper;
+            _jwtService = jwtService;
         }
 
         public async Task<UserDto> RegisterUser(RegisterUserDto userDto)
@@ -43,7 +46,7 @@ namespace BasketballInfo.Application.Contract
             return _mapper.Map<UserDto>(createdUser);
         }
 
-        public async Task<UserDto> UserSignUp(UserSignInDto userDto)
+        public async Task<UserIdentityDto> UserSigIn(UserSignInDto userDto)
         {
             //check if email exists
             var userEmailCheck = await _userRepository.GetUserByEmailAsync(userDto.Email);
@@ -66,7 +69,15 @@ namespace BasketballInfo.Application.Contract
                 LastName = userEmailCheck.LastName,
             };
             //successful signup returns user
-            return _mapper.Map<UserDto>(user);
+            var userDtoToReturn =  _mapper.Map<UserDto>(user);
+
+            var identityToken = _jwtService.GenerateIdentityToken(userDtoToReturn);
+
+            return new UserIdentityDto()
+            {
+                User = userDtoToReturn,
+                IdentityToken = identityToken
+            };
         }
 
         public async Task<IEnumerable<UserDto>> GetAllUsers()

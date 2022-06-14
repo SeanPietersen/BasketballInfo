@@ -68,3 +68,4 @@ C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.API\obj\
 C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.API\obj\Debug\net5.0\ref\BasketballInfo.API.dll
 C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.API\obj\Debug\net5.0\BasketballInfo.API.pdb
 C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.API\obj\Debug\net5.0\BasketballInfo.API.genruntimeconfig.cache
+C:\Users\CodeTenor\Desktop\BasketballInfo\BasketballInfo\BasketballInfo.API\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

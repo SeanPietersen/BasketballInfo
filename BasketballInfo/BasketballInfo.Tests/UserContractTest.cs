@@ -1,5 +1,6 @@
 ﻿using BasketballInfo.Application.Contract;
 using BasketballInfo.Application.Dto;
+using BasketballInfo.Application.Services;
 using BasketballInfo.Domain;
 using BasketballInfo.Infrastructure.Services;
 using BasketballInfo.Infrastructure.Services.Repositories;
@@ -18,10 +19,11 @@ namespace BasketballInfo.Tests
     {
         private readonly IUserContract userContract;
         private readonly IUserRepository _userRepository;
+        private readonly IJwtService _jwtService;
         public UserContractTest()
         {
             _userRepository = Substitute.For<IUserRepository>();
-            userContract = new UserContract(_userRepository, _mapper);
+            userContract = new UserContract(_userRepository, _mapper, _jwtService);
         }
 
         [Fact]
@@ -150,7 +152,7 @@ namespace BasketballInfo.Tests
             _userRepository.GetUserByEmailAsync(signUpUserDto.Email).ReturnsNull();
 
             //Act
-            var actual = await userContract.UserSignUp(signUpUserDto);
+            var actual = await userContract.UserSigIn(signUpUserDto);
 
             //Assert
             Assert.Null(actual);
@@ -178,7 +180,7 @@ namespace BasketballInfo.Tests
             _userRepository.GetUserByEmailAsync(signUpUserDto.Email).Returns(userInDb);
 
             //Act
-            var actual = await userContract.UserSignUp(signUpUserDto);
+            var actual = await userContract.UserSigIn(signUpUserDto);
 
             //Assert
             Assert.Null(actual);
@@ -206,10 +208,10 @@ namespace BasketballInfo.Tests
             _userRepository.GetUserByEmailAsync(signUpUserDto.Email).Returns(userInDb);
 
             //Act
-            var actual = await userContract.UserSignUp(signUpUserDto);
+            var actual = await userContract.UserSigIn(signUpUserDto);
 
             //Assert
-            Assert.Equal(userInDb.FirstName, actual.FirstName);
+            Assert.Equal(userInDb.FirstName, actual.User.FirstName);
         }
 
         [Fact]

@@ -1,6 +1,7 @@
 using AutoMapper;
 using BasketballInfo.Application.Contract;
 using BasketballInfo.Application.Profiles;
+using BasketballInfo.Application.Services;
 using BasketballInfo.Infrastructure.DbContexts;
 using BasketballInfo.Infrastructure.Services;
 using BasketballInfo.Infrastructure.Services.Repositories;
@@ -10,7 +11,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System.Text;
 
 namespace BasketballInfo.API
 {
@@ -39,7 +42,7 @@ namespace BasketballInfo.API
             services.AddTransient<IPlayerContract, PlayerContract>();
             //services.AddTransient<ICoachContract, CoachContract>();
             services.AddTransient<IUserContract, UserContract>();
-            services.AddTransient<IAuthenticationContract, AuthenticationContract>();
+            services.AddTransient<IJwtService, JwtService>();
 
             services.AddDbContext<BasketballInfoContext>(opt => opt.UseSqlServer(Configuration["ConnectionStrings:BasketballInfoDBConnectionStringSqlServer"]));
 
@@ -59,7 +62,21 @@ namespace BasketballInfo.API
 
             services.AddSingleton(mapper);
 
-            
+            services.AddAuthentication("Bearer")
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new()
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = Configuration["Authentication:Issuer"],
+                        ValidAudience = Configuration["Authentication:Audience"],
+                        IssuerSigningKey = new SymmetricSecurityKey(
+                            Encoding.ASCII.GetBytes(Configuration["Authentication:SecretForKey"]))
+                    };
+
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -76,7 +93,7 @@ namespace BasketballInfo.API
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

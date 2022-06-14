@@ -32,9 +32,9 @@ namespace BasketballInfo.API.Controllers
         }
 
         [HttpPost("signin")]
-        public ActionResult<UserDto> UserSignIn([FromBody] UserSignInDto userDto)
+        public ActionResult<UserIdentityDto> UserSignIn([FromBody] UserSignInDto userDto)
         {
-            var user = _userContract.UserSignUp(userDto).Result;
+            var user = _userContract.UserSigIn(userDto).Result;
 
             if (user == null)
             {
