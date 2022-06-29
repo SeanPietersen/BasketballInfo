@@ -25,7 +25,7 @@ namespace BasketballInfo.API.Controllers
 
             if(user == null)
             {
-                return NotFound();
+                return Conflict();
             }
 
             return Ok(user);
